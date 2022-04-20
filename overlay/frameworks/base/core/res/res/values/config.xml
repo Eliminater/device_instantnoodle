@@ -32,6 +32,16 @@
         <item>300</item>
     </integer-array>
 
+    <!-- Array of hysteresis constraint values for brightening, represented as tenths of a
+         percent. The length of this array is assumed to be one greater than
+         config_screenThresholdLevels. The brightening threshold is calculated as
+         screenBrightness * (1.0f + CONSTRAINT_VALUE). When the new screen brightness is higher
+         than this threshold, it is applied. See the config_screenThresholdLevels description for
+         how the constraint value is chosen. -->
+    <integer-array name="config_screenBrighteningThresholds">
+        <item>0</item>
+    </integer-array>
+
     <!-- Array of hysteresis constraint values for darkening, represented as tenths of a
          percent. The length of this array is assumed to be one greater than
          config_ambientThresholdLevels. The darkening threshold is calculated as
@@ -55,7 +65,7 @@
          level[n] <= value < level[n+1]  n+1
          level[MAX] <= value             MAX+1 -->
     <integer-array name="config_ambientThresholdLevels">
-        <item>10</item>
+        <item>15</item>
     </integer-array>
 
     <!-- Array of hysteresis constraint values for darkening, represented as tenths of a
@@ -165,70 +175,70 @@
          This array should be equal in size to config_screenBrightnessBacklight -->
     <array name="config_screenBrightnessNits">
         <item>0</item>
-        <item>2.52</item>
-        <item>2.73</item>
-        <item>3.09</item>
-        <item>3.52</item>
-        <item>4.26</item>
-        <item>5.19</item>
-        <item>6.25</item>
-        <item>7.64</item>
-        <item>9.16</item>
-        <item>10.93</item>
-        <item>12.95</item>
-        <item>15.03</item>
-        <item>17.1</item>
-        <item>19.62</item>
-        <item>22.25</item>
-        <item>25.05</item>
-        <item>28.26</item>
-        <item>31.3</item>
-        <item>34.92</item>
-        <item>38.71</item>
-        <item>42.12</item>
-        <item>46.3</item>
-        <item>50.74</item>
-        <item>55.09</item>
-        <item>59.97</item>
-        <item>65.12</item>
-        <item>70.5</item>
-        <item>76.13</item>
-        <item>81.89</item>
-        <item>88.44</item>
-        <item>94.87</item>
-        <item>101.73</item>
-        <item>108.62</item>
-        <item>115.56</item>
-        <item>123.42</item>
-        <item>130.97</item>
-        <item>139.46</item>
-        <item>147.95</item>
-        <item>156.51</item>
-        <item>165.26</item>
-        <item>174.2</item>
-        <item>183.4</item>
-        <item>192.44</item>
-        <item>202.14</item>
-        <item>213.46</item>
-        <item>224.19</item>
-        <item>236.26</item>
-        <item>247.38</item>
-        <item>256.92</item>
-        <item>269.27</item>
-        <item>283.3</item>
-        <item>296.07</item>
-        <item>309.87</item>
-        <item>322.62</item>
-        <item>336.62</item>
-        <item>351.48</item>
-        <item>365.36</item>
-        <item>380.21</item>
-        <item>396.71</item>
-        <item>411.47</item>
-        <item>426.86</item>
-        <item>444.93</item>
-        <item>461.3</item>
-        <item>477.34</item>
+        <item>3.04</item>
+        <item>3.29</item>
+        <item>3.53</item>
+        <item>3.74</item>
+        <item>4.71</item>
+        <item>5.81</item>
+        <item>7.26</item>
+        <item>8.6</item>
+        <item>10.3</item>
+        <item>12.03</item>
+        <item>13.89</item>
+        <item>16.12</item>
+        <item>18.28</item>
+        <item>20.95</item>
+        <item>23.93</item>
+        <item>26.66</item>
+        <item>30.23</item>
+        <item>33.33</item>
+        <item>37.15</item>
+        <item>40.79</item>
+        <item>44.2</item>
+        <item>48.41</item>
+        <item>52.78</item>
+        <item>57.45</item>
+        <item>62.38</item>
+        <item>67.94</item>
+        <item>73.47</item>
+        <item>79.28</item>
+        <item>85.41</item>
+        <item>91.85</item>
+        <item>98.44</item>
+        <item>105.33</item>
+        <item>112.54</item>
+        <item>119.99</item>
+        <item>127.51</item>
+        <item>135.3</item>
+        <item>143.53</item>
+        <item>151.78</item>
+        <item>160.59</item>
+        <item>169.36</item>
+        <item>178.43</item>
+        <item>188.01</item>
+        <item>197.69</item>
+        <item>207.53</item>
+        <item>218.91</item>
+        <item>230.28</item>
+        <item>242.07</item>
+        <item>253.43</item>
+        <item>264.83</item>
+        <item>279.3</item>
+        <item>291.74</item>
+        <item>304.09</item>
+        <item>317.42</item>
+        <item>330.38</item>
+        <item>344.16</item>
+        <item>360.38</item>
+        <item>374.71</item>
+        <item>389.93</item>
+        <item>406.35</item>
+        <item>421.99</item>
+        <item>436.78</item>
+        <item>454.79</item>
+        <item>470.5</item>
+        <item>488.38</item>
     </array>
 
     <!-- An array describing the screen's backlight values corresponding to the brightness
@@ -311,7 +321,7 @@
     <!-- Default screen brightness setting set.
          -2 is invalid so setting will resort to int value specified above.
          Must be in the range specified by minimum and maximum. -->
-    <item type="dimen" name="config_screenBrightnessSettingDefaultFloat">0.45882353</item>
+    <item type="dimen" name="config_screenBrightnessSettingDefaultFloat">0.44313726</item>
 
     <!-- Maximum screen brightness allowed by the power manager.
          -2 is invalid so setting will resort to int value specified above.
@@ -336,6 +346,75 @@
     <!-- Light sensor event rate in milliseconds for automatic brightness control. -->
     <integer name="config_autoBrightnessLightSensorRate">200</integer>
 
+    <!-- Boolean indicating whether display white balance is supported. -->
+    <bool name="config_displayWhiteBalanceAvailable">true</bool>
+
+    <!-- See AmbientSensor.AmbientColorTemperatureSensor.
+         The ambient color temperature sensor name. -->
+    <string name="config_displayWhiteBalanceColorTemperatureSensorName">qti.sensor.rgb</string>
+
+    <!-- Minimum color temperature, in Kelvin, supported by display white balance. -->
+    <integer name="config_displayWhiteBalanceColorTemperatureMin">5000</integer>
+
+    <!-- Maximum color temperature, in Kelvin, supported by display white balance. -->
+    <integer name="config_displayWhiteBalanceColorTemperatureMax">7400</integer>
+
+    <!-- See DisplayWhiteBalanceThrottler.
+         The increase threshold values, throttled if value < value * (1 + threshold). Must be
+         non-empty, the same length as config_displayWhiteBalanceBaseThresholds, and contain
+         non-negative numbers. -->
+    <array name="config_displayWhiteBalanceIncreaseThresholds">
+        <item>0.15</item>
+    </array>
+
+    <!-- See DisplayWhiteBalanceThrottler.
+         The decrease threshold values, throttled if value > value * (1 - threshold). Must be
+         non-empty, the same length as config_displayWhiteBalanceBaseThresholds, and contain
+         non-negative numbers. -->
+    <array name="config_displayWhiteBalanceDecreaseThresholds">
+        <item>0.15</item>
+    </array>
+
+    <!-- See DisplayWhiteBalanceController.
+         A float array containing a list of ambient color temperatures, in Kelvin. This array,
+         together with config_displayWhiteBalanceDisplayColorTemperatures, is used to generate a
+         lookup table used in DisplayWhiteBalanceController. This lookup table is used to map
+         ambient color temperature readings to a target color temperature for the display.
+         This table is optional. If used, this array must,
+         1) Contain at least two entries
+         2) Be the same length as config_displayWhiteBalanceDisplayColorTemperatures. -->
+    <integer-array name="config_displayWhiteBalanceAmbientColorTemperatures">
+        <item>2800</item>
+        <item>3600</item>
+        <item>4000</item>
+        <item>4500</item>
+        <item>5000</item>
+        <item>6100</item>
+        <item>6700</item>
+        <item>7000</item>
+        <item>8000</item>
+    </integer-array>
+
+    <!-- See DisplayWhiteBalanceController.
+         A float array containing a list of ambient color temperatures, in Kelvin. This array,
+         together with config_displayWhiteBalanceDisplayColorTemperatures, is used to generate a
+         lookup table used in DisplayWhiteBalanceController. This lookup table is used to map
+         ambient color temperature readings to a target color temperature for the display.
+         This table is optional. If used, this array must,
+         1) Contain at least two entries
+         2) Be the same length as config_displayWhiteBalanceDisplayColorTemperatures. -->
+    <integer-array name="config_displayWhiteBalanceDisplayColorTemperatures">
+        <item>5109</item>
+        <item>5198</item>
+        <item>5249</item>
+        <item>5556</item>
+        <item>5848</item>
+        <item>6522</item>
+        <item>6737</item>
+        <item>6909</item>
+        <item>7373</item>
+    </integer-array>
+
     <!-- The bounding path of the cutout region of the main built-in display.
          Must either be empty if there is no cutout region, or a string that is parsable by
          {@link android.util.PathParser}.
@@ -348,7 +427,7 @@
          appended after the path string to interpret coordinates in dp instead of px units.
          Note that a physical cutout should be configured in pixels for the best results.
          -->
-    <string translatable="false" name="config_mainBuiltInDisplayCutout">M -407 68.5 A 34 34 0 0 1 -475 68.5 A 34 34 0 0 1 -407 68.5 Z M -475,0 L -407,0 Z M -540,0 L -540,102.5 Z</string>
+    <string translatable="false" name="config_mainBuiltInDisplayCutout">M -525 79.5 A 41.5 41.5 0 0 1 -608 79.5 A 41.5 41.5 0 0 1 -525 79.5 Z M -608,0 L -525,0 Z M -720,0 L -720,121 Z</string>
 
     <!-- Like config_mainBuiltInDisplayCutout, but this path is used to report the
          one single bounding rect per device edge to the app via
@@ -356,8 +435,14 @@
          appearance of the cutout as much as possible, and may be smaller than
          config_mainBuiltInDisplayCutout
          -->
-
-   <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">M 0.0, 0.0 h 156 v 104 h -156 Z @left</string>
+    <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">
+        M 0,0
+        H 228
+        V 121
+        H 0
+        Z
+        @left
+    </string>
 
     <!-- Whether the display cutout region of the main built-in display should be forced to
          black in software (to avoid aliasing or emulate a cutout that is not physically existent).
@@ -381,9 +466,14 @@
     <integer name="config_defaultPeakRefreshRate">90</integer>
 
     <!-- The properties of a UDFPS sensor in pixels, in the order listed below: -->
-    <integer-array name="config_udfps_sensor_props" translatable="false" >
-        <item>540</item>  <!-- <item>sensorLocationX</item> -->
-        <item>1910</item> <!-- <item>sensorLocationY</item> -->
-        <item>87</item>   <!-- <item>sensorRadius</item> -->
-    </integer-array>
+     <integer-array name="config_udfps_sensor_props" translatable="false" >
+      <!--
+        <item>sensorLocationX</item>
+        <item>sensorLocationY</item>
+        <item>sensorRadius</item>
+      -->
+       <item>717</item>
+       <item>2542</item>
+       <item>110</item>      
+     </integer-array>
 </resources>

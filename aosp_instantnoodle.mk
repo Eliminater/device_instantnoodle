@@ -21,10 +21,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from instantnoodle device
 $(call inherit-product, device/oneplus/instantnoodle/device.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common PixelExperience stuff.
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_instantnoodle
+# Boot Animation
+TARGET_BOOT_ANIMATION_RES := 1440
+
+PRODUCT_NAME := aosp_instantnoodle
 PRODUCT_DEVICE := instantnoodle
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
@@ -33,11 +36,8 @@ PRODUCT_MODEL := IN2013
 PRODUCT_SYSTEM_NAME := OnePlus8_EEA
 PRODUCT_SYSTEM_DEVICE := OnePlus8
 
-PRODUCT_GMS_CLIENTID_BASE := android-oneplus
+PPRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_DEVICE=OnePlus8 \
-    TARGET_PRODUCT=OnePlus8_EEA \
-    PRIVATE_BUILD_DESC="OnePlus8-user 11   release-keys"
-
-BUILD_FINGERPRINT := OnePlus/OnePlus8_EEA/OnePlus8:11/RP1A.201005.001/2012102310:user/release-keys
+    PRODUCT_DEVICE=OnePlus8Pro \
+    PRODUCT_NAME=OnePlus8Pro
